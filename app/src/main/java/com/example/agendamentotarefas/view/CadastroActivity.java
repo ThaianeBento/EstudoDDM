@@ -1,6 +1,10 @@
-package com.example.agendamentotarefas;
+package com.example.agendamentotarefas.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -9,13 +13,14 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.agendamentotarefas.R;
 
 public class CadastroActivity extends AppCompatActivity {
 
@@ -79,7 +84,23 @@ public class CadastroActivity extends AppCompatActivity {
                 return;
             }
 
-            Toast.makeText(this, titulo + " - " + tipo + " - " + horario + " - " + local, Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(CadastroActivity.this, ResumoActivity.class);
+
+            intent.putExtra("titulo", titulo);
+            intent.putExtra("tipo", tipo);
+            intent.putExtra("horario", horario);
+            intent.putExtra("local", local);
+            intent.putExtra("prioritaria", prioritaria);
+
+            progressBar.setVisibility(View.VISIBLE);
+            btnConfirmar.setEnabled(false);
+
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                startActivity(intent);
+
+                progressBar.setVisibility(View.GONE);
+                btnConfirmar.setEnabled(true);
+            }, 1000);
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

@@ -9,42 +9,49 @@
         android:id="@+id/txtTituloAnteriores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="40dp"
         android:text="Tarefas Anteriores"
-        app:layout_constraintTop_toBottomOf="@+id/txtResumoTarefa"
-        tools:layout_editor_absoluteX="147dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtResumoTarefa" />
 
     <TextView
         android:id="@+id/txtTituloResumo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Resumo da Tarefa"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="69dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtResumoTarefa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="32dp"
         android:text="Resumo aparecerá aqui"
-        app:layout_constraintTop_toBottomOf="@+id/txtTituloResumo"
-        tools:layout_editor_absoluteX="131dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTituloResumo" />
 
     <TextView
         android:id="@+id/txtTarefasAnteriores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:text="1. Estudar Android - Estudo - 19:00 - Biblioteca  2. Reunião do trabalho - Trabalho - 14:00 - Escritório"
-        app:layout_constraintTop_toBottomOf="@+id/txtTituloAnteriores"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_marginTop="24dp"
+        android:text="1. Estudar Android - Estudo - 19:00 - Biblioteca &#10;&#10; 2. Reunião do trabalho - Trabalho - 14:00 - Escritório"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTituloAnteriores" />
 
     <Button
         android:id="@+id/btnVoltar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="Voltar"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="667dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTarefasAnteriores" />
 </androidx.constraintlayout.widget.ConstraintLayout>

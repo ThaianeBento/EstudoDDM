@@ -25,6 +25,10 @@
             android:name="com.example.agendamentotarefas.view.ResumoActivity"
             android:exported="false" />
 
+        <activity
+            android:name="com.example.agendamentotarefas.view.ListaActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

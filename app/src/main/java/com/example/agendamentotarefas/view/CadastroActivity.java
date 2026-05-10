@@ -21,6 +21,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.agendamentotarefas.R;
+import com.example.agendamentotarefas.data.TarefaRepository;
+import com.example.agendamentotarefas.model.Tarefa;
 
 public class CadastroActivity extends AppCompatActivity {
 
@@ -83,6 +85,16 @@ public class CadastroActivity extends AppCompatActivity {
                 autoLocal.setError("Informe o local da tarefa");
                 return;
             }
+
+            Tarefa tarefa = new Tarefa();
+
+            tarefa.setTitulo(titulo);
+            tarefa.setTipo(tipo);
+            tarefa.setHorario(horario);
+            tarefa.setLocal(local);
+            tarefa.setPrioridade(prioritaria);
+
+            TarefaRepository.adicionarTarefa(tarefa);
 
             Intent intent = new Intent(CadastroActivity.this, ResumoActivity.class);
 

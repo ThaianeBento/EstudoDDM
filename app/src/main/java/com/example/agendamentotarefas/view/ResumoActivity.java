@@ -1,5 +1,6 @@
 package com.example.agendamentotarefas.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.*;
 
@@ -12,6 +13,7 @@ public class ResumoActivity extends AppCompatActivity {
     private TextView txtResumoTarefa;
     private TextView txtTarefasAnteriores;
     private Button btnVoltar;
+    private Button btnVerLista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -21,6 +23,12 @@ public class ResumoActivity extends AppCompatActivity {
         txtResumoTarefa = findViewById(R.id.txtResumoTarefa);
         txtTarefasAnteriores = findViewById(R.id.txtTarefasAnteriores);
         btnVoltar = findViewById(R.id.btnVoltar);
+        btnVerLista = findViewById(R.id.btnVerLista);
+
+        btnVerLista.setOnClickListener(v -> {
+            Intent intent = new Intent(ResumoActivity.this, ListaActivity.class);
+            startActivity(intent);
+        });
 
         //Receber valores de cadastro -> vem de putExtra
         String titulo = getIntent().getStringExtra("titulo");

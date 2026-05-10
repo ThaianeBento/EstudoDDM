@@ -19,10 +19,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.agendamentotarefas.R;
-import com.example.agendamentotarefas.data.TarefaRepository;
 import com.example.agendamentotarefas.model.Tarefa;
+import com.example.agendamentotarefas.viewModel.TarefaViewModel;
 
 public class CadastroActivity extends AppCompatActivity {
 
@@ -33,6 +34,7 @@ public class CadastroActivity extends AppCompatActivity {
     private AutoCompleteTextView autoLocal;
     private ProgressBar progressBar;
     private Button btnConfirmar;
+    private TarefaViewModel tarefaViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class CadastroActivity extends AppCompatActivity {
         autoLocal = findViewById(R.id.autoLocal);
         progressBar = findViewById(R.id.progressBar);
         btnConfirmar = findViewById(R.id.btnConfirmar);
+        tarefaViewModel = new ViewModelProvider(this).get(TarefaViewModel.class);
 
         String[] tipos = {"Trabalho", "Estudo", "Lazer", "Outro"};
 
@@ -94,15 +97,9 @@ public class CadastroActivity extends AppCompatActivity {
             tarefa.setLocal(local);
             tarefa.setPrioridade(prioritaria);
 
-            TarefaRepository.adicionarTarefa(tarefa);
+            tarefaViewModel.adicionarTarefa(tarefa);
 
             Intent intent = new Intent(CadastroActivity.this, ResumoActivity.class);
-
-            intent.putExtra("titulo", titulo);
-            intent.putExtra("tipo", tipo);
-            intent.putExtra("horario", horario);
-            intent.putExtra("local", local);
-            intent.putExtra("prioritaria", prioritaria);
 
             progressBar.setVisibility(View.VISIBLE);
             btnConfirmar.setEnabled(false);

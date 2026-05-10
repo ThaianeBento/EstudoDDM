@@ -5,17 +5,21 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.agendamentotarefas.R;
 import com.example.agendamentotarefas.adapter.TarefaAdapter;
-import com.example.agendamentotarefas.data.TarefaRepository;
 import com.example.agendamentotarefas.model.Tarefa;
+import com.example.agendamentotarefas.viewModel.TarefaViewModel;
 
 import java.util.ArrayList;
 
 public class ListaActivity extends AppCompatActivity {
     private ListView listViewTarefas;
     private Button btnVoltarLista;
+    private TarefaAdapter adapter;
+    private ArrayList<Tarefa> tarefas;
+    private TarefaViewModel tarefaViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +30,21 @@ public class ListaActivity extends AppCompatActivity {
         listViewTarefas = findViewById(R.id.listViewTarefas);
         btnVoltarLista = findViewById(R.id.btnVoltarLista);
 
-        ArrayList<Tarefa> tarefas = TarefaRepository.getTarefas();
-        TarefaAdapter adapter = new TarefaAdapter(this, tarefas);
+        tarefas = new ArrayList<>();
+        adapter = new TarefaAdapter(this, tarefas);
         listViewTarefas.setAdapter(adapter);
+        tarefaViewModel = new ViewModelProvider(this).get(TarefaViewModel.class);
+
+        tarefaViewModel.getTarefasLiveData().observe(this, listaAtualizada -> {
+            tarefas.clear();
+
+            if (listaAtualizada != null) {
+                tarefas.addAll(listaAtualizada);
+            }
+
+            adapter.notifyDataSetChanged();
+        });
+
 
         btnVoltarLista.setOnClickListener(v -> {
             finish();
